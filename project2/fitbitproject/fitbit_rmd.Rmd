@@ -1,0 +1,271 @@
+---
+title: "Fitbit Project"
+author: "Stephen Cristiano"
+date: "October 2, 2015"
+output: html_document
+---
+
+
+
+```{r}
+#### questions to ask:
+#### difference between weekend and weekday?
+#### daily patterns (ie does he begin to exercise at some point)
+#### can we find time zone shifts. Jeff was in Vancouver in early August 2015, do we see this?
+#### is there a difference between 2015 jeff and the last time we have data
+
+## find average steps per day (with se)
+## find average activity pattern per day with se
+
+rm(list=ls())
+## set working directory
+## load data
+load("fitbit-data.Rdata")
+source("fitbitfunctions.R")
+########
+set.seed(134)
+########
+head(colMeans(steps)) # day by day
+head(rowMeans(steps)) # minute by minute
+plot(colMeans(steps), type="l") #- most days are missing
+## column max - 0 means no activity all day. throw day out
+
+### throw out days with no activity
+
+### althought means are powerful, can still use a modeling framework
+## evaluate how well you predect: hold out saturday etc. MSE. 
+dts = steps = NULL
+library(matrixStats) # gives colSds colMedians, etc.
+library(reshape2)
+library(lubridate)
+library(plyr)
+library(dplyr)
+library(accelerometry)
+library(ggplot2)
+library(splines)
+library("RColorBrewer")
+library(mgcv)
+xdata = load("fitbit-data.Rdata")
+xdata
+
+###############################################
+# Exploring
+###############################################
+rmeans = rowMeans(steps)
+plot(rmeans, type="l")
+cmeans = colMeans(steps)
+plot(dts, cmeans, type="l", ylab="Average steps",main="Steps per day")
+cmaxs = colMaxs(steps)
+plot(dts, cmaxs, type="l")
+
+# vector of dates with no data at all
+steps_noNA = steps
+steps_noNA[ steps == 0] = NA
+rmeans_noNA = rowMeans(steps_noNA, na.rm= TRUE)
+no_info_days = dts[cmaxs == 0]
+
+df = as.data.frame(steps)
+```
+
+Clean up data
+```{r}
+############### THIS WILL TAKE OUT THE Date/Time-ness of the dts object!
+colnames(df) = dts
+df$minute = seq(nrow(df))
+
+# Make data set one row per day/time
+# This is so that you can look at data together in time. Aka 1201AM and 1159PM can 
+# be shown to be 2 minutes apart and are close but not in the matrix form
+long = melt(df, 
+            variable.name = "date", id.vars = "minute")
+### Turn date into a date/time object
+long = mutate(long, date = ymd(date))
+long$datetime = long$date
+# Add the minutes to the date!
+long$minute = long$minute - 1
+minute(long$datetime) =  long$minute
+
+### add day of week
+long$day = wday(long$date)
+long$wday = wday(long$date, label = TRUE, abbr = FALSE)
+long$month = month(long$date, label=TRUE)
+
+### weekend or weekday
+long$wkend <- factor(ifelse(long$wday %in% c("Saturday", "Sunday"), "Weekend", "Weekday"))
+
+long$steps = long$value
+## non-wear timeslot
+long$weartime = accel.weartime(long$value, 
+                               window = 60,
+                               tol = 2, 
+                               tol.upper = 99) > 0
+
+
+### find days he wears it for at least part of the day
+dates <- unique(long$date)
+## 987 days in dataset
+wearday <- sapply(1:987, function(x) any(long[long$date == dates[x],]$weartime))
+## 1440 minutes in day
+long$wearday <- as.vector(sapply(wearday, function(x) rep(x, 1440)))
+
+
+### clean data set
+good = long[long$weartime, ]
+```
+
+```{r}
+## day by day data
+day_data = ddply(good, ~ wday, summarize, 
+                 mean = mean(steps, na.rm = TRUE), 
+                 sd = sd(steps, na.rm = TRUE),
+                 n = sum(!is.na(steps))
+)
+
+day_data
+
+for(i in 1:7) print(day_data$mean[i] + c(-1,1) * day_data$sd[i] / day_data$n[i])
+
+## minute by minute data
+min_data = ddply(good, ~ minute, summarize, 
+                 mean = mean(steps, na.rm = TRUE), 
+                 sd = sd(steps, na.rm = TRUE),
+                 n = sum(!is.na(steps))
+)
+
+min_data$hour = floor(min_data$minute /60)
+min_data$min = min_data$minute %% 60
+min_data$dt = min_data$hour + min_data$min / 60
+
+### plot wear time by minute
+plot(min_data$dt, min_data$mean, type="l")
+```
+More exploratory stuff
+```{r}
+g = ggplot(aes(x = dt, y = mean), data = min_data) + geom_line() +
+  geom_smooth(method = "loess", 
+              span = 0.1, 
+              se=FALSE)
+g
+
+### plot no wear per minute
+plot(min_data$n, type="l", lwd=2, xlab='minute', ylab='Weartime')
+### is he wearing it when he sleeps???
+```
+PREDICTION:
+```{r}
+#### remove days before november 2014
+nov28 <- ydm("20142811")
+long2 <- long[long$date > nov28, ]
+
+### remove non-wear days
+long2 <- long2[long2$wearday == TRUE,]
+
+### how many minutes have weartime data
+sum(long2$weartime)/length(long2$weartime)
+###### PREDICTION ######
+### predict minute by minute
+#vv <- fitbit.predict(long2, m="mean")
+
+ind <- sample(floor(0.25 * nrow(long2[long2$weartime==TRUE,])))
+fitbit.mse(long2, ind, m="mean")
+fitbit.mse(long2, ind, m="lm")
+fitbit.mse(long2, ind, m="glm")
+#### mean is best.
+
+### predict all the missing data using the mean
+long3 <- fitbit.predict(long2, m="mean")[[1]]
+```
+
+Compare weeeknds to weekdays
+```{r}
+min_data = ddply(long2[long2$weartime==TRUE,], ~ minute, summarize, 
+                 mean = mean(steps, na.rm = TRUE), 
+                 sd = sd(steps, na.rm = TRUE),
+                 n = sum(!is.na(steps))
+)
+
+min_data$hour = floor(min_data$minute /60)
+min_data$min = min_data$minute %% 60
+min_data$dt = min_data$hour + min_data$min / 60
+
+### plot wear time by minute
+plot(min_data$dt, min_data$mean, type="l")
+
+
+########### DO A LASAGNA PLot
+#### none of this worked how I was hoping ####
+## Create the data
+palette <- brewer.pal(5, "PuOr")[-2]
+step.mat <- matrix(long3[,"steps"],
+                   nrow=length(unique(long3[,"date"])),
+                   ncol=length(unique(long3[,"minute"])))
+rownames(step.mat) <- 1:284
+colnames(step.mat) <- 0:1439
+step.mat <- step.mat[seq(1,284, by=4),seq(0,1439, by=2)]
+names(dimnames(step.mat)) <- c("day", "minute")
+step.df <- melt(step.mat)
+ggplot(step.df,aes(x=minute,y=day,fill=value)) + geom_tile(colour="black")
+
+
+
+################
+## WEEKEND VS WEEKDAY
+
+##### mean per minute during the weekdays
+long_weekday <- long2[long2$weartime==TRUE & long2$wkend == "Weekday",]
+min_weekday_data = ddply(long_weekday, ~ minute, summarize, 
+                 mean = mean(steps, na.rm = TRUE), 
+                 sd = sd(steps, na.rm = TRUE),
+                 n = sum(!is.na(steps))
+)
+
+min_weekday_data$hour = floor(min_data$minute /60)
+min_weekday_data$min = min_data$minute %% 60
+min_weekday_data$dt = min_data$hour + min_data$min / 60
+
+##### WEEKENDS
+long_weekend <- long2[long2$weartime==TRUE & long2$wkend == "Weekend",]
+min_weekend_data = ddply(long_weekend, ~ minute, summarize, 
+                         mean = mean(steps, na.rm = TRUE), 
+                         sd = sd(steps, na.rm = TRUE),
+                         n = sum(!is.na(steps))
+)
+
+min_weekend_data$hour = floor(min_data$minute /60)
+min_weekend_data$min = min_data$minute %% 60
+min_weekend_data$dt = min_data$hour + min_data$min / 60
+
+
+### plot wear time by minute
+plot(min_weekday_data$dt, min_weekday_data$mean, type="l")
+g_weekday = ggplot(aes(x = dt, y = mean), data = min_weekday_data) + geom_line() +
+    geom_ribbon(data=min_weekday_data,aes(ymin=mean-sd/sqrt(n),ymax=mean+sd/sqrt(n)),alpha=0.3)
+g_weekday
+
+####
+plot(min_weekend_data$dt, min_weekend_data$mean, type="l")
+g_weekend = ggplot(aes(x = dt, y = mean), data = min_weekend_data) + geom_line() +
+  geom_ribbon(data=min_weekend_data,aes(ymin=mean-sd/sqrt(n),ymax=mean+sd/sqrt(n)),alpha=0.3)
+g_weekend
+```
+
+Look at August vs similar timeframe in July
+```{r}
+long_aug <- long2[long2$date >= ydm(20150108) & long2$date <= ydm(20151508),]
+long_aug <- long_aug[long_aug$weartime == TRUE,]
+aug_data = ddply(long_aug, ~ minute, summarize, 
+                         mean = mean(steps, na.rm = TRUE), 
+                         sd = sd(steps, na.rm = TRUE),
+                         n = sum(!is.na(steps))
+)
+plot(aug_data$minute, aug_data$mean, type="l")
+
+long_jul <- long2[long2$date >= ydm(20150107) & long2$date <= ydm(20151507),]
+long_jul <- long_jul[long_jul$weartime == TRUE,]
+jul_data = ddply(long_jul, ~ minute, summarize, 
+                 mean = mean(steps, na.rm = TRUE), 
+                 sd = sd(steps, na.rm = TRUE),
+                 n = sum(!is.na(steps))
+)
+plot(jul_data$minute, jul_data$mean, type="l")
+```

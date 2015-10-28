@@ -1,0 +1,156 @@
+"","dept","school","name","rank","n.C","n.M","tot.n"
+"1","Biost","UW","adam szpiro","Assistant Professor",19,8,27
+"3","Stat","IOWA","alicia carriquiry","Professor",63,6,69
+"4","Stat","STANFORD","amir dembo","Professor",2,56,58
+"5","Stat","IOWA","amy froelich","Associate Professor",5,7,12
+"6","Stat","STANFORD","andrea montanari","Professor",45,86,131
+"7","Stat","IOWA","arka ghosh","Associate Professor",7,16,23
+"8","Stat","STANFORD","art owen","Professor",24,40,64
+"9","Stat","STANFORD","bala rajaratnam","Assistant Professor",26,22,48
+"10","Biost","UW","barbara mcknight","Professor",125,2,127
+"11","Biost","UMN","birgit grund","Associate Professor",4,1,5
+"12","Biost","UMN","bradley carlin","Professor",46,69,115
+"13","Stat","STANFORD","bradley efron","Professor",34,43,77
+"14","Biost","JHU","brian caffo","Professor",91,50,141
+"15","Biost","UW","brian leroux","Professor",55,6,61
+"16","Biost","UW","bruce weir","Professor",42,1,43
+"17","Biost","UMN","caven reilly","Associate Professor",43,7,50
+"18","Biost","UMN","chap le","Professor",39,5,44
+"19","Biost","JHU","charles rohde","Professor",32,6,38
+"20","Stat","STANFORD","chiara sabatti","Associate Professor",64,10,74
+"21","Stat","IOWA","chong wang","Associate Professor",580,22,602
+"22","Stat","IOWA","cindy yu","Associate Professor",6,3,9
+"23","Biost","JHU","ciprian crainiceanu","Professor",54,60,114
+"24","Biost","JHU","constantine frangakis","Professor",70,17,87
+"25","Stat","IOWA","dan nettleton","Professor",108,23,131
+"26","Stat","UC","dan nicolae","Professor",128,13,141
+"27","Stat","IOWA","dan nordman","Professor",7,3,10
+"28","Biost","JHU","daniel o. scharfstein","Professor",41,19,60
+"29","Biost","UW","daniela witten","Associate Professor",11,13,24
+"30","Stat","STANFORD","david  donoho","Professor",58,73,131
+"31","Stat","STANFORD","david  siemund","Professor",15,21,36
+"32","Biost","UMN","david vock","Assistant Professor",10,2,12
+"33","Stat","IOWA","dean adams","Professor",82,3,85
+"34","Stat","IOWA","derrick rollins","Professor",41,7,48
+"35","Stat","IOWA","dianne cook","Professor",32,40,72
+"36","Biost","UMN","dipankar bandyopadhyay","Associate Professor",43,25,68
+"37","Biost","UW","elizabeth halloran","Professor",40,13,53
+"38","Biost","JHU","elizabeth ogburn","Assistant Professor",13,3,16
+"39","Biost","UW","ellen wijsman","Professor",103,1,104
+"40","Stat","IOWA","emily berg","Assistant Professor",3,6,9
+"41","Stat","STANFORD","Emmanuel Cand","Professor",39,54,93
+"42","Biost","UMN","eric lock","Assistant Professor",10,1,11
+"44","Stat","IOWA","farzad sabzikar","Assistant Professor",0,6,6
+"45","Stat","IOWA","federick lorenz","Professor",2,0,2
+"46","Stat","UC","gregory lawler","Professor",2,20,22
+"47","Stat","STANFORD","guenther walther","Professor",18,18,36
+"48","Biost","UMN","haitao chu","Associate Professor",71,32,103
+"49","Biost","UW","heagerty patrick","Professor",38,10,48
+"50","Stat","IOWA","heike hofmann","Professor",13,20,33
+"51","Biost","JHU","hongkai ji","Associate Professor",36,3,39
+"52","Stat","IOWA","huaiqing wu","Associate Professor",11,10,21
+"53","Stat","STANFORD","iain johnstone","Professor",18,27,45
+"54","Biost","JHU","ingo ruczinski","Professor",78,7,85
+"55","Biost","UW","inoue lurdes","Associate Professor",12,15,27
+"56","Stat","IOWA","jae-kwang kim","Professor",6,30,36
+"57","Biost","UMN","james connett","Professor",26,3,29
+"58","Biost","UMN","james hodges","Associate Professor",44,11,55
+"59","Biost","UW","james hughes","Professor",144,10,154
+"60","Biost","UMN","james neaton","Professor",30,0,30
+"61","Biost","JHU","james tonascia","Professor",13,0,13
+"62","Stat","IOWA","jarad niemi","Assistant Professor",10,5,15
+"63","Biost","JHU","jeffrey leek","Associate Professor",39,7,46
+"64","Stat","UC","jian ding","Assistant Professor",2,22,24
+"65","Stat","STANFORD","john duchi","Assistant Professor",18,16,34
+"66","Biost","UMN","john hughes","Assistant Professor",9,8,17
+"67","Stat","UC","john lafferty","Professor",8,11,19
+"68","Stat","UC","john reinitz","Professor",47,11,58
+"69","Stat","STANFORD","johnathan taylor","Professor",97,27,124
+"70","Biost","UW","jon wakefield","Professor",28,26,54
+"71","Biost","UW","jon wellner","Professor",6,51,57
+"72","Stat","UC","jonathan weare","Assistant Professor",13,8,21
+"73","Biost","UMN","joseph koopmeiners","Assistant Professor",31,4,35
+"74","Stat","STANFORD","joseph romano","Professor",53,45,98
+"75","Biost","UMN","julian wolfson","Assistant Professor",13,6,19
+"76","Biost","JHU","karen bandeen-roche","Professor",105,13,118
+"77","Stat","IOWA","karin dorman","Professor",40,6,46
+"78","Biost","JHU","kasper hansen","Assistant Professor",27,3,30
+"79","Biost","UW","katie kerr","Associate Professor",1,0,1
+"80","Biost","UW","kc gary chan","Associate Professor",16,9,25
+"81","Stat","IOWA","kenneth koehler","Professor",15,3,18
+"82","Stat","UC","kirk wolter","Professor",10,5,15
+"83","Stat","IOWA","kris de brabanter","Assistant Professor",5,12,17
+"84","Biost","UMN","kyle rudser","Assistant Professor",7,1,8
+"85","Stat","UC","lars hansen","Professor",54,26,80
+"86","Stat","UC","lek-heng lim","Assistant Professor",12,9,21
+"87","Stat","STANFORD","lester mackey","Assistant Professor",9,9,18
+"88","Biost","UW","lianne sheppard","Professor",94,10,104
+"89","Biost","UMN","lin zhang","Assistant Professor",156,20,176
+"90","Biost","UMN","lynn eberly","Associate Professor",51,1,52
+"91","Stat","IOWA","mack shelley","Professor",59,5,64
+"92","Biost","UW","marco carone","Assistant Professor",24,6,30
+"93","Biost","JHU","marie diener-west","Professor",96,0,96
+"94","Stat","IOWA","mark kaise","Professor",23,15,38
+"95","Stat","UC","marry mcpeek","Professor",33,7,40
+"96","Biost","JHU","martin lindquist","Professor",47,7,54
+"97","Stat","UC","matthew stephens","Professor",72,13,85
+"98","Stat","IOWA","max norris","Professor",18,9,27
+"99","Biost","JHU","mei-cheng wang","Professor",32,31,63
+"100","Stat","IOWA","mervyn g. marasinghe","Associate Professor",2,6,8
+"101","Biost","JHU","michael rosenblum","Associate Professor",12,15,27
+"102","Stat","UC","michael stein","Professor",97,41,138
+"104","Biost","UW","nancy temkin","Professor",127,0,127
+"105","Stat","UC","nicolas brunel","Professor",43,38,81
+"106","Biost","UW","noah simon","Assistant Professor",6,8,14
+"107","Stat","IOWA","olga chyzh","Assistant Professor",2,0,2
+"108","Stat","IOWA","peng liu","Associate Professor",23,5,28
+"109","Stat","UC","per mykland","Professor",5,34,39
+"110","Stat","STANFORD","persi diaconis","Professor",14,84,98
+"111","Biost","UW","peter hoff","Professor",12,11,23
+"112","Stat","UC","peter maccullagh","Professor",12,16,28
+"113","Stat","IOWA","petrutza caragea","Associate Professor",7,0,7
+"114","Stat","IOWA","philip dixon","Professor",58,5,63
+"115","Stat","IOWA","ranjan maitra","Professor",4,12,16
+"116","Stat","IOWA","raymond wong","Assistant Professor",8,2,10
+"117","Biost","UW","rice ken","Associate Professor",35,1,36
+"118","Biost","UW","richard kronmal","Professor",178,13,191
+"119","Stat","UC","rina barber","Assistant Professor",7,7,14
+"120","Stat","UC","risi kondor","Assistant Professor",6,11,17
+"121","Stat","STANFORD","robert tibshirani","Professor",138,103,241
+"122","Biost","JHU","roger peng","Associate Professor",70,18,88
+"123","Stat","UC","ronald thisted","Professor",63,0,63
+"124","Biost","UMN","saonli basu","Associate Professor",61,1,62
+"125","Stat","IOWA","sarah nusser","Professor",21,11,32
+"126","Biost","UW","scott emerson","Professor",25,17,42
+"127","Biost","JHU","scott zeger","Professor",121,39,160
+"128","Biost","UW","shojaie ali","Assistant Professor",8,0,8
+"129","Stat","IOWA","somak dutta","Assistant Professor",0,4,4
+"130","Stat","IOWA","songxi chen","Professor",5,51,56
+"131","Stat","STANFORD","sourav chatterjee","Professor",4,24,28
+"132","Stat","UC","stephen stigler","Professor",14,28,42
+"133","Stat","IOWA","stephen vardeman","Professor",23,18,41
+"134","Stat","UC","steven lalley","Professor",6,33,39
+"135","Biost","UMN","sudipto banerjee","Professor",139,68,207
+"136","Stat","STANFORD","susan holmes","Professor",59,30,89
+"137","Biost","UW","susanne may","Associate Professor",47,6,53
+"138","Biost","UW","thomas fleming","Professor",61,10,71
+"139","Biost","JHU","thomas louis","Professor",86,44,130
+"140","Biost","UW","tim thornton","Assistant Professor",42,1,43
+"141","Stat","STANFORD","trevor hastie","Professor",90,84,174
+"142","Stat","STANFORD","tze leung lai","Professor",32,57,89
+"143","Stat","IOWA","ulrike genschel","Assistant Professor",13,4,17
+"144","Biost","JHU","Vadim Zipunnikov","Assistant Professor",18,8,26
+"145","Stat","IOWA","vivekananda roy","Associate Professor",0,13,13
+"146","Stat","IOWA","w. robert stephenson","Professor",1,7,8
+"147","Biost","UMN","wei pan","Professor",152,57,209
+"148","Stat","UC","weibiao wu","Professor",13,65,78
+"149","Biost","UMN","weihua guan","Assistant Professor",19,0,19
+"150","Stat","IOWA","william q. meeker","Professor",98,25,123
+"151","Stat","STANFORD","wing wong","Professor",143,23,166
+"152","Biost","UW","xh zhou","Professor",46,64,110
+"153","Biost","UMN","xianghua luo","Associate Professor",71,3,74
+"154","Stat","UC","yalit amit","Professor",15,16,31
+"155","Stat","IOWA","yehua li","Associate Professor",225,16,241
+"156","Biost","UMN","yen-yi ho","Assistant Professor",2,0,2
+"157","Stat","IOWA","zhengyuan zhu","Associate Professor",2,5,7
+"158","Stat","IOWA","zhulin he","Assistant Professor",0,5,5
